@@ -18,6 +18,12 @@
               <el-icon><icon-menu /></el-icon>
               <span>产品</span>
             </el-menu-item>
+            <el-button
+              class="logout"
+              @click="logout"
+            >
+              登出
+            </el-button>
           </el-menu>
         </el-aside>
         <el-main>
@@ -34,6 +40,7 @@ import {
   Menu as IconMenu,
 } from '@element-plus/icons-vue';
 import { useRouter, useRoute } from 'vue-router';
+import { localSet } from '@/common/utils';
 
 const route = useRoute();
 const active = ref(route.path.split('/')[2]);
@@ -42,6 +49,12 @@ const router = useRouter();
 // * 路由跳转
 function to(v) {
   router.push(v);
+}
+
+// * 登出
+function logout() {
+  localSet('user', null);
+  router.push('/login');
 }
 
 </script>
@@ -65,5 +78,16 @@ function to(v) {
         height: 100%;
       }
   }
+}
+
+.el-menu-vertical-demo{
+  position:relative;
+}
+
+.logout{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%)
 }
 </style>

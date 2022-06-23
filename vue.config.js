@@ -7,7 +7,8 @@ module.exports = defineConfig({
       // * 以/api开头的请求
       '/api': {
         // * 目标地址
-        target: 'http://localhost:3001',
+        // target: 'http://localhost:3000',
+        target: 'http://49.235.98.65:3000',
         ws: true,
         // * 是否跨域
         changeOrigin: true,

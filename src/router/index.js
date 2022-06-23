@@ -22,6 +22,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       // * 检测token
       const userInfo = localGet('user');
+
       if (userInfo) {
         next();
       } else {

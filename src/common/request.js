@@ -3,6 +3,7 @@
 import { create } from 'axios';
 import _ from 'lodash';
 import { localGet } from '@/common/utils';
+import router from '@/router';
 import CustomError from './error';
 
 // ? 创建基本server
@@ -20,7 +21,7 @@ api.interceptors.request.use(
     const token = _.get(user, 'token', '');
     if (token) {
       // eslint-disable-next-line no-param-reassign
-      request.headers.authorization = token;
+      request.headers.authorization = `Bearer ${token}`;
     }
     return request;
   },
@@ -34,7 +35,13 @@ api.interceptors.response.use(
   (response) => response.data,
   // ? 如果响应错误
   // ? 自定义错误,把error进行再封装
-  (error) => Promise.reject((new CustomError(error))),
+  (error) => {
+    const cusError = new CustomError(error);
+    if (cusError.code === 'auth-failed') {
+      router.push('/login');
+    }
+    return Promise.reject(cusError);
+  },
 );
 
 export default api;
