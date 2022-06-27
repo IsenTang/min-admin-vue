@@ -28,6 +28,11 @@
               <el-icon><icon-menu /></el-icon>
               <span>树</span>
             </el-menu-item>
+
+            <el-menu-item index="lazy">
+              <el-icon><icon-menu /></el-icon>
+              <span>懒加载</span>
+            </el-menu-item>
             <el-button
               class="logout"
               @click="logout"
