@@ -6,6 +6,7 @@ const admin = () => import(/* webpackChunkName: "admin" */ '@/views/admin/AdminV
 const user = () => import(/* webpackChunkName: "user" */ '@/views/user/UserView.vue');
 const product = () => import(/* webpackChunkName: "product" */ '@/views/product/ProductView.vue');
 const search = () => import(/* webpackChunkName: "search" */ '@/views/search/SearchView.vue');
+const tree = () => import(/* webpackChunkName: "tree" */ '@/views/tree/TreeView.vue');
 
 const routes = [
   {
@@ -47,6 +48,10 @@ const routes = [
       {
         path: 'search',
         component: search,
+      },
+      {
+        path: 'tree',
+        component: tree,
       },
     ],
   },

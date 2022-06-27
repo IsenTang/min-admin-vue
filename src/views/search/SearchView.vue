@@ -42,7 +42,6 @@
 import { reactive, ref } from 'vue';
 import _ from 'lodash';
 import { ElLoading, ElMessage } from 'element-plus';
-// eslint-disable-next-line import/no-cycle
 import { getSearchShopList } from '@/api/shop';
 import { localGet, localSet } from '@/common/utils';
 
@@ -64,7 +63,7 @@ const state = reactive({
 
 const hide = (e) => {
   // ? 不包含，就隐藏
-  if (!searchContainer.value.contains(e.target)) {
+  if (searchContainer.value && !searchContainer.value.contains(e.target)) {
     state.isShow = false;
     document.removeEventListener('click', hide);
   }
@@ -72,6 +71,7 @@ const hide = (e) => {
 
 const show = () => {
   state.isShow = true;
+  state.keywordList = getKeywordList();
   // * 监听
   document.addEventListener('click', hide);
 };
@@ -103,8 +103,6 @@ function setKeyword() {
   }
   // * 放回localstorage
   localSet('keywordList', list);
-  // * 手动重置
-  state.keywordList = list;
 }
 
 async function getContent() {
@@ -131,6 +129,8 @@ const search = _.debounce(async () => {
   // * 非空判断
   if (state.keyword) {
     await getContent();
+  } else {
+    state.list = [];
   }
 }, 1000);
 
@@ -162,6 +162,10 @@ const searchContent = async (v) => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
+  }
+
+  ::v-deep(.el-tag){
     cursor: pointer;
   }
 </style>

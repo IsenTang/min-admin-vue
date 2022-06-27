@@ -23,6 +23,11 @@
               <el-icon><icon-menu /></el-icon>
               <span>搜索</span>
             </el-menu-item>
+
+            <el-menu-item index="tree">
+              <el-icon><icon-menu /></el-icon>
+              <span>树</span>
+            </el-menu-item>
             <el-button
               class="logout"
               @click="logout"
