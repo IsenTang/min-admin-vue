@@ -18,6 +18,11 @@
               <el-icon><icon-menu /></el-icon>
               <span>产品</span>
             </el-menu-item>
+
+            <el-menu-item index="search">
+              <el-icon><icon-menu /></el-icon>
+              <span>搜索</span>
+            </el-menu-item>
             <el-button
               class="logout"
               @click="logout"

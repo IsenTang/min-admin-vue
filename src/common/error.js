@@ -1,3 +1,4 @@
+// * 自定义错误
 export default function CustomError(error) {
   const { data } = error.response;
 

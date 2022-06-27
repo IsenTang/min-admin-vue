@@ -25,3 +25,13 @@ export async function deleteShopList(data) {
 export async function insertShopList(data) {
   await api.post('/api/admin/shopItem', data);
 }
+
+// * 获取搜索的商品信息
+export async function getSearchShopList(data) {
+  const result = await api.get('/api/search/content', {
+    params: {
+      ...data,
+    },
+  });
+  return result;
+}
