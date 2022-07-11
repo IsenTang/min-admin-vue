@@ -8,6 +8,7 @@ const product = () => import(/* webpackChunkName: "product" */ '@/views/product/
 const search = () => import(/* webpackChunkName: "search" */ '@/views/search/SearchView.vue');
 const tree = () => import(/* webpackChunkName: "tree" */ '@/views/tree/TreeView.vue');
 const lazy = () => import(/* webpackChunkName: "lazy" */ '@/views/lazy/LazyView.vue');
+const details = () => import(/* webpackChunkName: "details" */ '@/views/details/DetailsView.vue');
 
 const routes = [
   {
@@ -57,6 +58,10 @@ const routes = [
       {
         path: 'lazy',
         component: lazy,
+      },
+      {
+        path: 'details',
+        component: details,
       },
     ],
   },

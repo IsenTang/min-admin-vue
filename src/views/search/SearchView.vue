@@ -30,6 +30,7 @@
           :key="item._id"
           class="search-item"
           :title="item.name"
+          @click="toDetails(item._id)"
         >
           {{ item.name }}
         </div>
@@ -41,9 +42,12 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import _ from 'lodash';
+import { useRouter } from 'vue-router';
 import { ElLoading, ElMessage } from 'element-plus';
 import { getSearchShopList } from '@/api/shop';
 import { localGet, localSet } from '@/common/utils';
+
+const router = useRouter();
 
 // * 获取历史记录，并排序
 function getKeywordList() {
@@ -138,6 +142,11 @@ const searchContent = async (v) => {
   state.keyword = v;
   await getContent();
 };
+
+// * 跳转到details页面
+function toDetails(id) {
+  router.push(`/admin/details?id=${id}`);
+}
 
 </script>
 

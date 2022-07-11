@@ -11,6 +11,16 @@ export async function getShopList({ page, limit }) {
   return result;
 }
 
+// * 获取单条商品信息
+export async function getShopItem({ id }) {
+  const result = await api.get('/api/admin/shopItem', {
+    params: {
+      id,
+    },
+  });
+  return result;
+}
+
 // * 更新商品信息
 export async function updateShopList(data) {
   await api.put('/api/admin/shopItem', data);
